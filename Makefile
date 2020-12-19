@@ -1,8 +1,9 @@
-#
-# This is a project Makefile. It is assumed the directory this Makefile resides in is a
-# project subdirectory.
-#
+# The name of the binary file to create
+PROJECT_NAME := justsomename
 
-PROJECT_NAME := hello-world
+# Variables that change are in a separate file because otherwise they trigger a
+# full rebuild
+include config.mk
 
+# Let esp-idf's build system do it's thing
 include $(IDF_PATH)/make/project.mk
