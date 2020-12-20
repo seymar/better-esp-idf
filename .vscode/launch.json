@@ -1,0 +1,27 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "hello_world",
+            "type": "cppdbg",
+            "request": "launch",
+            "MIMode": "gdb",
+            "miDebuggerPath": "xtensa-esp32-elf-gdb",
+            "miDebuggerArgs": "",
+            "program": "${workspaceFolder}/build/hello_world.elf",
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "setupCommands": [
+                { "description": "enable pretty printing for gdb",
+                  "text": "-enable-pretty-printing", },
+                { "text": "file '${workspaceFolder}/build/hello_world.elf'" },
+                { "text": "target remote :3333" },
+                { "text": "mon reset halt" },
+                { "text": "thb app_main" },
+            ],
+            "logging": {
+                "engineLogging": true
+            },
+        }
+    ]
+  }

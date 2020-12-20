@@ -4,7 +4,7 @@
 # convenient targets just like idf.py tries to do but for CMake.
 # Because ESP-IDF also has a legacy Make build system aside from CMake, we can
 # just include the legacy Make build system and use all its targets. ESP-IDF's
-# examples also use this method of allowing you to call `make` form within the
+# examples also use this method of allowing you to call `make` from within the
 # project folder.
 # In the future if ESP-IDF might not support legacy `make` anymore :-( 
 # This Makefile could then recusively call CMake directly as idf.py does
@@ -13,7 +13,7 @@
 # a lot of extra struggles when setting up a project for the first time.
 
 # ESP-IDF's build system has this makefile as a prerequisite, so all changes to
-# it trigger a full rebuild. Therefore, a separate config.mk file is included.
+# it trigger a full rebuild. Therefore, config.mk and components.mk are separate
 include config.mk
 include components.mk
 
@@ -28,3 +28,5 @@ PROJECT_NAME := $(APP)
 # This could later be replace to a recursive call to CMake.
 export IDF_PATH := ./esp-idf
 include $(IDF_PATH)/make/project.mk
+
+include tools/tools.mk

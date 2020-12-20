@@ -13,6 +13,14 @@
 #include "esp_system.h"
 #include "esp_spi_flash.h"
 
+void test (void)
+{
+    while (1) {
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        printf("hb\n");
+    }
+}
+
 void app_main(void)
 {
     printf("Hello world!\n");
@@ -33,11 +41,15 @@ void app_main(void)
 
     printf("Minimum free heap size: %d bytes\n", esp_get_minimum_free_heap_size());
 
+    /*
     for (int i = 10; i >= 0; i--) {
         printf("Restarting in %d seconds...\n", i);
         vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
-    printf("Restarting now.\n");
+    */
+    printf("Starting now.\n");
     fflush(stdout);
-    esp_restart();
+
+    test(); 
+    // esp_restart();
 }

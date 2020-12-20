@@ -1,0 +1,10 @@
+{
+    // Settings for ESP-IDF extension, not used yet
+    "idf.espIdfPath": "./esp-idf",
+    "idf.customExtraPaths": "/Users/seymar/.espressif/tools/openocd-esp32/v0.10.0-esp32-20200709/openocd-esp32/bin:/Users/seymar/.espressif/tools/xtensa-esp32-elf/esp-2020r3-8.4.0/xtensa-esp32-elf/bin",
+    "idf.customExtraVars": "{\"OPENOCD_SCRIPTS\":\"/Users/seymar/.espressif/tools/openocd-esp32/v0.10.0-esp32-20200709/openocd-esp32/share/openocd/scripts\"}",
+    "idf.openOcdConfigs": [
+        "./tools/ftdi_mini_module.cfg",
+        "target/esp32.cfg"
+    ]
+}

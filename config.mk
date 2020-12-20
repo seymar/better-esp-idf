@@ -2,4 +2,4 @@
 APP = hello_world
 
 # esptool serial port to use for programming & monitoring
-ESPPORT := /dev/cu.usbserial-1410
+ESPPORT := /dev/cu.usbserial-1430
