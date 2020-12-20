@@ -7,17 +7,25 @@
             "request": "launch",
             "MIMode": "gdb",
             "miDebuggerPath": "xtensa-esp32-elf-gdb",
-            "miDebuggerArgs": "",
             "program": "${workspaceFolder}/build/hello_world.elf",
             "cwd": "${workspaceFolder}",
-            "stopAtEntry": false,
             "setupCommands": [
-                { "description": "enable pretty printing for gdb",
-                  "text": "-enable-pretty-printing", },
-                { "text": "file '${workspaceFolder}/build/hello_world.elf'" },
                 { "text": "target remote :3333" },
+
+                // Without this the debugger does not stop at app_main
+                { "text": "file '${workspaceFolder}/build/hello_world.elf'" },
+
+                // https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/api-guides/jtag-debugging/tips-and-quirks.html#what-is-the-meaning-of-debugger-s-startup-commands
+                { "text": "set remote hardware-watchpoint-limit 2"},
+
+                // Reset and halt the target
                 { "text": "mon reset halt" },
-                { "text": "thb app_main" },
+
+                // Flush away the old state before reset
+                { "text": "flushregs" },
+
+                // Set temporary hardware breakpoint at app_main
+                { "text": "thb app_main" }
             ],
             "logging": {
                 "engineLogging": true

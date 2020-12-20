@@ -1,7 +1,7 @@
 # Flash using OpenOCD (muuuuuch faster than serial)
 prog:
 	openocd-esp32 -f ./tools/ftdi_mini_module.cfg -f target/esp32.cfg \
-		-c "program_esp build/$(APP).bin 0x10000 verify reset exit"
+		-c "program_esp build/$(APP).bin 0x10000 reset exit"
 
 # Run openocd to allow GDB connections at :3333
 oocd:
