@@ -30,6 +30,14 @@ no absolute paths needed anywhere in this repo nor the need to configure them.
 The IntelliSense generator script requires `python` with `json5` to read
 `settings.json`. Install with `pip install json5`.
 
+# How to use
+```
+git clone <this repo>
+git submodule update --init
+make -j
+make flash
+```
+
 ## Todo
  - [ ] Windows support
  - [ ] Automatically add all components in `./components/` instead of needing to
