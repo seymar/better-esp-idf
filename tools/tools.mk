@@ -10,3 +10,7 @@ oocd:
 # Run GDB to connect to OpenOCD
 gdb:
 	xtensa-esp32-elf-gdb build/$(APP).elf -nh -ex "target remote :3333"
+
+# Generate C/C++ include paths for all components and add them to settings.json
+intellisense:
+	python tools/intellisense.py "$(COMPONENT_INCLUDES)"
