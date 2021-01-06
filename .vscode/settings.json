@@ -1,4 +1,5 @@
 {
+    "terminal.integrated.cwd": "C:/",
     "C_Cpp.default.compilerPath": "xtensa-esp32-elf-gcc",
     "C_Cpp.loggingLevel": "Debug",
     "C_Cpp.default.browse.limitSymbolsToIncludedHeaders": true,
