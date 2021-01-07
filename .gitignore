@@ -1,2 +1,4 @@
 build/
 openocd.log
+openocd.cfg
+config.mk

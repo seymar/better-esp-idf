@@ -31,16 +31,19 @@ The IntelliSense generator script requires `python` with `json5` to read
 `settings.json`. Install with `pip install json5`.
 
 # How to use
+Execute the following in bash:
 ```
 git clone <this repo>
 git submodule update --init
-make -j
-make flash
+make -j prog
 ```
 
+## Debugging
+Make sure to run VSCode from Windows and default terminal is Command prompt
+
 ## Todo
- - [ ] Windows support
- - [ ] Automatically add all components in `./components/` instead of needing to
-       list them in `components.mk`
- - [ ] Add a `boards` folder with board specific configurations
- - [ ] Add a `programmers` folder with different OpenOCD configurations
+ - [x] Windows support
+ - [x] Separate JTAG interface configs, FT2232/FT4232 and channel config
+ - [x] Select FreeRTOS debugging with a separate Debug configuration
+ - [ ] Add esptool serial flashing support 
+ - [ ] Make sure default build task always runs in bash

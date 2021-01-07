@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "FT2232 Channel 0",
+            "name": "NoRTOS",
             "type": "cppdbg",
             "request": "launch",
 
@@ -24,7 +24,8 @@
                 // debugger to fail breaking at app_main
                 { "text": "file './build/app.elf'" },
 
-                { "text": "target remote | openocd-esp32.exe -f ./tools/ftdi_mini_module.cfg -f target/esp32.cfg -c 'gdb_port pipe; log_output openocd.log' -c 'init'" },
+                // Start OpenOCD
+                { "text": "target remote | openocd-esp32.exe -c 'set ESP_RTOS none' -f ./openocd.cfg -c 'gdb_port pipe; log_output openocd.log' -c 'init'" },
 
                 // https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/api-guides/jtag-debugging/tips-and-quirks.html#what-is-the-meaning-of-debugger-s-startup-commands
                 { "text": "set remote hardware-watchpoint-limit 2"},
@@ -40,20 +41,63 @@
             ], 
 
             // After the setup commands, the current working directory is set
-            //"cwd": "//wsl$/Ubuntu/home/stijn/dev/better-esp-idf",
             "cwd": "./",
 
             // And the program is loaded
-            //"program": "${workspaceFolder}/build/hello_world.elf",
             "program": "${workspaceFolder}/build/app.elf",
 
-            //"customLaunchSetupCommands": [ ],
             "logging": {
                 "engineLogging": true,
-                "exceptions": true,
-                "programOutput": true,
-                "trace": true
+            },
+        },
+        {
+            "name": "FreeRTOS",
+            "type": "cppdbg",
+            "request": "launch",
+
+            // Tell the debugger to start GDB
+            "MIMode": "gdb",
+
+            // GDB executable on Windows PATH
+            "miDebuggerPath": "xtensa-esp32-elf-gdb.exe",
+
+            // GDB commands executed right after GDB is started
+            "setupCommands": [
+                // Change working directory because we need GDB to be in the
+                // project directory to find the OpenOCD config files and set
+                // the file. VSCode only sets the `cwd` and `program` after the
+                // setupCommands (weird)
+                { "text": "cd ${workspaceFolder}" },
+
+                // Also load the symbol table from within the current directory
+                // debugger to fail breaking at app_main
+                { "text": "file './build/app.elf'" },
+
+                // Start OpenOCD
+                { "text": "target remote | openocd-esp32.exe -f ./openocd.cfg -c 'gdb_port pipe; log_output openocd.log' -c 'init'" },
+
+                // https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/api-guides/jtag-debugging/tips-and-quirks.html#what-is-the-meaning-of-debugger-s-startup-commands
+                { "text": "set remote hardware-watchpoint-limit 2"},
+
+                // Reset and halt the target
+                { "text": "mon reset halt" },
+
+                // Flush away the old state before reset
+                { "text": "flushregs" },
+
+                // Set temporary hardware breakpoint at app_main
+                { "text": "thb app_main" }
+            ], 
+
+            // After the setup commands, the current working directory is set
+            "cwd": "./",
+
+            // And the program is loaded
+            "program": "${workspaceFolder}/build/app.elf",
+
+            "logging": {
+                "engineLogging": false,
             },
         }
     ]
-  }
+}
