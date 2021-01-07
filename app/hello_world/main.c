@@ -21,7 +21,7 @@ void test (void)
     }
 }
 
-void app_main(void)
+void app_main (void)
 {
     printf("Hello world!\n");
 

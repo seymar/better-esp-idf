@@ -22,7 +22,7 @@ EXTRA_COMPONENT_DIRS += $(PROJECT_PATH)/app $(PROJECT_PATH)/components
 COMPONENTS += $(APP)
 
 # The name of the binary files to create
-PROJECT_NAME := $(APP)
+PROJECT_NAME := app
 
 # Let ESP-IDF's build system do it's thing
 # This could later be replace to a recursive call to CMake.

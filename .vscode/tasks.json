@@ -1,0 +1,17 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "make all",
+            "type": "shell",
+            /// TODO: Make sure this is executed from WSL Bash and that the
+            // compiler is in the path
+            "command": "make",
+            "args": ["-j", "all"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+    ]
+}

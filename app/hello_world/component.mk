@@ -18,14 +18,14 @@
 
 # COMPONENT_EXTRA_INCLUDES ?=
 # Extra directories to search for headers during app compilation that are not in
-# the app folder
+# the app folder and thuss not app- but project specific.
 
 # COMPONENT_DEPENDS ?=
-# Component names on which this specific app depends, all non-app specific
-# components or applicable for all apps should be set on project level
+# Component names on which this specific app depends. Beware, all non-app
+# specific components or applicable for all apps should be set on project level.
 
 # COMPONENT_EXTRA_CLEAN ?=
-# Extra files to clean that are for example generated
+# Extra files to clean, for example generated files
 
 # COMPONENT_SUBMODULES ?=
 # Git submodules to initialize and update in the app folder
